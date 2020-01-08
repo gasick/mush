@@ -43,11 +43,12 @@ class CardDeck {
 
     fun CardDeck(){
         for (c: Card in cardDeck)  {
-            //TODO добавить генерацию случайного порядка карт c.numberInDeck =
+            //TODO добавить генерацию случайного порядка карт c.numberInDeck
         }
     }
     fun printDeck() {
         for (c: Card in cardDeck){
+            //TODO вызвать рандомные карты из колоды.
             print("number of card: ${c.numberInDeck} \t")
             println("${c.symbol.toString()} of ${c.suit.toString()}")
         }
