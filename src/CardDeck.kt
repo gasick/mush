@@ -1,4 +1,5 @@
 import kotlin.random.Random
+import kotlin.random.nextInt
 
 class CardDeck {
     val number = 36;
@@ -47,17 +48,33 @@ class CardDeck {
         }
     }
     fun printDeck() {
+        fun takeCard(): Card {
+            val n = Random.nextInt(1..36)
+            if (!cardDeck[n].inuse) cardDeck[n].inuse = true
+            else takeCard()
+            return cardDeck[n]
+        }
         for (c: Card in cardDeck){
             //TODO вызвать рандомные карты из колоды.
-            print("number of card: ${c.numberInDeck} \t")
-            println("${c.symbol.toString()} of ${c.suit.toString()}")
+            print("${c.symbol.toString()} of ${c.suit.toString()} is in use: ${c.inuse};")
         }
+        println()
+        for ( x in 1..36){
+            //TODO не очень выходит сделать вывод случайной карты.
+            var card = takeCard()
+            print("${card};")
+            //println("${c.symbol.toString()} of ${c.suit.toString()}")
+        }
+        for (c: Card in cardDeck){
+            //TODO вызвать рандомные карты из колоды.
+            print("${c.symbol.toString()} of ${c.suit.toString()} is in use: ${c.inuse};")
+        }
+
     }
 }
 
 class Card(n: Int,su: Suits,sy: Symbols) {
     var inuse: Boolean = false
-    var numberInDeck: Int = n
     val suit: Suits = su
     val symbol: Symbols = sy
 }
