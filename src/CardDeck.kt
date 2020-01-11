@@ -1,5 +1,6 @@
 import kotlin.random.Random
 import kotlin.random.nextInt
+import GameTable
 
 class CardDeck {
     //собираем колоду карт
@@ -64,12 +65,28 @@ class CardDeck {
 //        println()
 
         //раздаем карты 4 участникам
-        for (x in 1..4 ) {
-           println("Player $x have:")
-           for (y in 1..4){
-               var card = takeCard()
-               println("\t${card.symbol.toString()} ${card.suit.toString()} в игре: ${card.inuse}; ")
-            }
+           for ( player in GameTable.GameTable){
+               if (player.lastPlayer == true) println("${player.name.toString()} - последний, имеет на руках:")
+               else println("${player.name.toString()} имеет на руках:")
+               println(player.lastPlayer.toString())
+               if (player.lastPlayer == true) {
+                   for (x in 1..6) {
+                       var card = takeCard()
+                       println("\t${card.symbol.toString()} ${card.suit.toString()} в игре: ${card.inuse}; ")
+                       if (x == 6) GameTable.trump = card.suit
+                       println(GameTable.trump)
+                   }
+               } else {
+                   for (x in 1..5) {
+                       var card = takeCard()
+                       println("\t${card.symbol.toString()} ${card.suit.toString()} в игре: ${card.inuse}; ")
+                   }
+               }
+
+//           for (y in 1..4){
+//               var card = takeCard()
+//               println("\t${card.symbol.toString()} ${card.suit.toString()} в игре: ${card.inuse}; ")
+//            }
             println()
         }
         //Выводим все карты чтобы знать. что карты которые учавствовали в игре помечены к сбросу.
@@ -80,8 +97,6 @@ class CardDeck {
 
     }
 }
-
-
 //Создаем класс карта
 class Card(su: Suits,sy: Symbols) {
     //Даем карте свойство "В игре"

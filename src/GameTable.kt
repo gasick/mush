@@ -1,17 +1,24 @@
-class GameTable {
-    //TODO добавить игроков с полями для имени и очков
-    fun GameTable() {
-        for (i in 1..4) {
+object GameTable {
+    var GameTable: MutableList<player> = mutableListOf()
+    var trump: Suits = Suits.Бубей
+    fun GameTable(): MutableList<player> {
+        for (i in 0..3) {
             println("Введите Имя игрока:")
             var playerName: String = readLine()!!.toString()
-            GameTable.add(player(playerName))
+            if (i == 3){
+                GameTable.add(player(playerName))
+                GameTable[i].lastPlayer = true
+            } else {
+                GameTable.add(player(playerName))
+            }
         }
-    }
 
-    lateinit var GameTable: MutableList<player>
+        return GameTable
+    }
 }
 
 class player(n: String) {
     val name = n
-    var Points: List<Int> = listOf(startPoint)
+    var points: List<Int> = listOf(startPoint)
+    var lastPlayer: Boolean = false
 }
