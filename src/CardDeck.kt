@@ -66,16 +66,20 @@ class CardDeck {
 
         //раздаем карты 4 участникам
            for ( player in GameTable.GameTable){
+               //Указываем является ли игрок последним и что у него на руках
                if (player.lastPlayer == true) println("${player.name.toString()} - последний, имеет на руках:")
                else println("${player.name.toString()} имеет на руках:")
                println(player.lastPlayer.toString())
+               //Если игрок последний сдаем ему 6 карт, последняя карта задает козыря
                if (player.lastPlayer == true) {
                    for (x in 1..6) {
                        var card = takeCard()
                        println("\t${card.symbol.toString()} ${card.suit.toString()} в игре: ${card.inuse}; ")
+                       //Задали козыря
                        if (x == 6) GameTable.trump = card.suit
                        println(GameTable.trump)
                    }
+                   //если игрок не последний раздаем ему 5 карт
                } else {
                    for (x in 1..5) {
                        var card = takeCard()
@@ -97,7 +101,7 @@ class CardDeck {
 
     }
 }
-//Создаем класс карта
+//Создаем класс карты
 class Card(su: Suits,sy: Symbols) {
     //Даем карте свойство "В игре"
     var inuse: Boolean = false
