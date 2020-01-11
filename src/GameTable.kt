@@ -1,3 +1,5 @@
+import PlayerLogic.player
+
 object GameTable {
     //Создаем таблицу в виде списка
     //Таблица у нас синглетон(если я не ошибаюсь)
@@ -12,7 +14,7 @@ object GameTable {
             var playerName: String = readLine()!!.toString()
             if (i == 3) {
                 GameTable.add(player(playerName))
-                GameTable[i].lastPlayer = true
+                GameTable[i].dealer = true
             } else {
                 GameTable.add(player(playerName))
             }
@@ -23,9 +25,4 @@ object GameTable {
     }
 }
 
-//Создаем игрока
-class player(n: String) {
-    val name = n
-    var points: List<Int> = listOf(startPoint)
-    var lastPlayer: Boolean = false
-}
+
