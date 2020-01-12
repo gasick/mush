@@ -26,6 +26,19 @@ class GamePlay {
                 }
             }
         }
+    }
+    //TODO каждый из игроков проверяет полученные карты и в случае если не удовлетворен раздачей просит пересдать
+    fun redealingAfterFolding() {
+        PlayerLogic.foldingBadCards()
+        for (player in GameTable.GameTable){
+            for (x in 1..5-player.cards.size) {
+                var card = takeCard()
+                player.cards.add(card)
+            }
+        }
+    }
+    fun playerInfo() {
+        // печетаем информацию о игроках
         for (player in GameTable.GameTable) {
             println()
             //Указываем является ли игрок последним и что у него на руках
@@ -42,11 +55,6 @@ class GamePlay {
         for (player in GameTable.GameTable) {
             println("\t ${player.name}: \t ${player.points.toString()} ")
         }
-    }
-    //TODO каждый из игроков проверяет полученные карты и в случае если не удовлетворен раздачей просит пересдать
-    fun redealingAfterFolding() {
-        PlayerLogic.foldingBadCards()
-
     }
     //TODO Кон игры(повторяем 4 раза, по количеству наличествующих карт)
     //TODO Подсчитываем очки у игроков
