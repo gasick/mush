@@ -1,4 +1,4 @@
-import CardDeck.takeCard
+import CardDeck
 
 class GamePlay {
     //Создаем таблицу игры, представляем игроков
@@ -13,7 +13,7 @@ class GamePlay {
             //Если игрок последний сдаем ему 6 карт, последняя карта задает козыря
             if (player.dealer == true) {
                 for (x in 1..6) {
-                    var card = takeCard()
+                    var card = CardDeck.takeCard()
                     player.cards.add(card)
                     //Задали козыря
                     if (x == 6) GameTable.trump = card.suit
@@ -21,7 +21,7 @@ class GamePlay {
                 //если игрок не последний раздаем ему 5 карт
             } else {
                 for (x in 1..5) {
-                    var card = takeCard()
+                    var card = CardDeck.takeCard()
                     player.cards.add(card)
                 }
             }
@@ -32,25 +32,25 @@ class GamePlay {
         PlayerLogic.foldingBadCards()
         for (player in GameTable.GameTable){
             for (x in 1..5-player.cards.size) {
-                var card = takeCard()
+                var card = CardDeck.takeCard()
                 player.cards.add(card)
             }
         }
     }
-    fun playerInfo() {
+    fun printPlayerInfo() {
         // печетаем информацию о игроках
         for (player in GameTable.GameTable) {
             println()
             //Указываем является ли игрок последним и что у него на руках
-            if (player.dealer == true) println("${player.name.toString()} - последний, имеет на руках:")
-            else println("${player.name.toString()} имеет на руках:")
+            if (player.dealer == true) println("${player.name} - последний, имеет на руках:")
+            else println("${player.name} имеет на руках:")
             for (card in player.cards) {
-                println("\t${card.symbol.toString()} ${card.suit.toString()} в игре: ${card.inuse}; ")
+                println("\t${card.symbol} ${card.suit} в игре: ${card.inuse}; ")
             }
         }
         //Тут печатаем основную информацию о том, какие карты у игроков и какой козырь.
         println()
-        println("Козырь: ${GameTable.trump.toString()}")
+        println("Козырь: ${GameTable.trump}")
         println("\t Имя \t Количество очков")
         for (player in GameTable.GameTable) {
             println("\t ${player.name}: \t ${player.points.toString()} ")

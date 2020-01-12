@@ -5,8 +5,9 @@ fun main() {
     val gp = GamePlay()
     gp.greetings()
     gp.dealingCards()
-    gp.playerInfo()
+    gp.printPlayerInfo()
     gp.redealingAfterFolding()
-    gp.playerInfo()
+    gp.printPlayerInfo()
+    for (card in CardDeck.cardDeck) println("\t${card.symbol} ${card.suit} в игре: ${card.inuse}; ")
 }
 
