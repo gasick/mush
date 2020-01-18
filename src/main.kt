@@ -6,8 +6,11 @@ fun main() {
     gp.greetings()
     gp.dealingCards()
     gp.printPlayerInfo()
+    CardDeck.printCardDeckContent()
     gp.redealingAfterFolding()
+   // gp.round()
     gp.printPlayerInfo()
-    for (card in CardDeck.cardDeck) println("\t${card.symbol} ${card.suit} в игре: ${card.inuse}; ")
+    CardDeck.printCardDeckContent()
+
 }
 

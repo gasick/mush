@@ -42,6 +42,7 @@ object CardDeck {
         Card(Suits.Бубей, Symbols.Шестерка)
     )
 
+    //Вытаскиваем из колоды карты игрокам.
     fun takeCard(): Card {
         lateinit var card: Card
         //Вытаскиваем номер карты
@@ -58,6 +59,14 @@ object CardDeck {
         return card
     }
 
+    //Выводим содержание колоды.
+    fun printCardDeckContent() {
+        for (card in CardDeck.cardDeck)
+            when (card.inuse) {
+                true -> println("\t${card.symbol} ${card.suit} в игре.")
+                false -> println("\t${card.symbol} ${card.suit} не в игре.")
+            }
+    }
 }
 
 //Создаем класс карты
