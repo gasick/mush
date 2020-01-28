@@ -11,3 +11,11 @@ enum class Symbols(val value: Int) {
     Семерка(7),
     Шестерка(8)
 }
+// TODO Запилить класс круговая очередь
+class circle_queue<T> (arr: T{
+    fun next() {
+
+    }
+    fun previous() {}
+
+}
