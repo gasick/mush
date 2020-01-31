@@ -52,6 +52,39 @@ class GamePlay {
                 false -> GameTable.GameTable[i].defence()
             }
 
+        fun runcircle(n: Int) {
+            when(n){
+                0 -> {
+                    for (i in 0..GameTable.GameTable.size)
+                    //если игрок первый, то он начинает атаковать.
+                        when (GameTable.GameTable[i].atacker) {
+                            true -> GameTable.GameTable[i].atack()
+                            false -> GameTable.GameTable[i].defence()
+                        }
+                        //TODO тут где-то игроки должны выкладывать карты по очереди. и кто бьет всю кучу должен стать
+                        // новым атакующим.
+                }
+                else -> {
+                    for (i in n-1 .. GameTable.GameTable.size-1){}
+                    // TODO тут мы будем выкладывать по очереди карты
+                         when (GameTable.GameTable[i].atacker) {
+                             true -> GameTable.GameTable[i].atack()
+                             false -> GameTable.GameTable[i].defence()
+                         }
+                    for (i in 0 .. n-2) {}
+                        // Продолжаем выклыадывать остатки карт
+                    // TODO тут мы  обозначаем победителя хода
+                    // сбрасываем карты и начинаем новый ход
+                         when (GameTable.GameTable[i].atacker) {
+                             true -> GameTable.GameTable[i].atack()
+                             false -> GameTable.GameTable[i].defence()
+                         }
+                }
+            }
+        }
+
+
+
 
 
 
