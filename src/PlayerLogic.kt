@@ -28,7 +28,7 @@ object PlayerLogic {
             if (player.dealer != true) {
                 for (x in player.cards.size - 1 downTo 0) {
                     if (player.cards[x].suit != GameTable.trump
-                        && player.cards[x].symbol != Symbols.Туз
+                        && player.cards[x].symbol != Symbols.Ace
                     ) player.cards.removeAt(x)
                 }
                 // Условия скидывания карт для ведущего.
@@ -37,7 +37,7 @@ object PlayerLogic {
                 if (CardDeck.cardDeck.size > 4) {
                     for (x in player.cards.size - 1 downTo 0) {
                         if (player.cards[x].suit != GameTable.trump
-                            && player.cards[x].symbol != Symbols.Туз
+                            && player.cards[x].symbol != Symbols.Ace
                         ) player.cards.removeAt(x)
                     }
                 } else {
@@ -45,7 +45,7 @@ object PlayerLogic {
                     for (i in 0..CardDeck.cardDeck.size) {
                         for (x in player.cards.size - 1 downTo 0) {
                             if (player.cards[x].suit != GameTable.trump
-                                && player.cards[x].symbol != Symbols.Туз
+                                && player.cards[x].symbol != Symbols.Ace
                             ) player.cards.removeAt(x)
                         }
                     }

@@ -1,21 +1,21 @@
 val startPoint = 25
-enum class Suits { Червей, Треф, Пик, Бубей}
+enum class Suits { Hearts, Clubs, Spades, Diamonds}
 enum class Symbols(val value: Int) {
-    Туз(0),
-    Король(1),
-    Дама(2),
-    Валет(3),
-    Десятка(4),
-    Девятка(5),
-    Восьмерка(6),
-    Семерка(7),
-    Шестерка(8)
+    Ace(0),
+    King(1),
+    Queen(2),
+    Jack(3),
+    Ten(4),
+    Nine(5),
+    Eight(6),
+    Seven(7),
+    Six(8)
 }
 // TODO Запилить класс круговая очередь
-class circle_queue<T> (arr: T{
-    fun next() {
-
-    }
-    fun previous() {}
-
-}
+//class circle_queue<T> (arr: T{
+//    fun next() {
+//
+//    }
+//    fun previous() {}
+//
+//}

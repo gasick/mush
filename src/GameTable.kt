@@ -5,7 +5,7 @@ object GameTable {
     //Таблица у нас синглетон(если я не ошибаюсь)
     var GameTable: MutableList<player> = mutableListOf()
     //тестово указываем козырь для игры
-    var trump: Suits = Suits.Бубей
+    var trump: Suits = Suits.Clubs
 
     //Заполняем таблицу данными
     fun GameTable() {
