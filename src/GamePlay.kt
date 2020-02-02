@@ -1,6 +1,8 @@
 import CardDeck
 
 class GamePlay {
+
+
     //Создаем таблицу игры, представляем игроков
     // и подставляем всё в gametable
     fun greetings() {
@@ -65,20 +67,22 @@ class GamePlay {
                         // новым атакующим.
                 }
                 else -> {
-                    for (i in n-1 .. GameTable.GameTable.size-1){}
-                    // TODO тут мы будем выкладывать по очереди карты
-                         when (GameTable.GameTable[i].atacker) {
-                             true -> GameTable.GameTable[i].atack()
-                             false -> GameTable.GameTable[i].defence()
-                         }
-                    for (i in 0 .. n-2) {}
+                    for (i in n-1 .. GameTable.GameTable.size-1) {
+                        // TODO тут мы будем выкладывать по очереди карты
+                        when (GameTable.GameTable[i].atacker) {
+                            true -> GameTable.GameTable[i].atack()
+                            false -> GameTable.GameTable[i].defence()
+                        }
+                    }
+                    for (i in 0 .. n-2) {
                         // Продолжаем выклыадывать остатки карт
-                    // TODO тут мы  обозначаем победителя хода
-                    // сбрасываем карты и начинаем новый ход
-                         when (GameTable.GameTable[i].atacker) {
-                             true -> GameTable.GameTable[i].atack()
-                             false -> GameTable.GameTable[i].defence()
-                         }
+                        // TODO тут мы  обозначаем победителя хода
+                        // сбрасываем карты и начинаем новый ход
+                        when (GameTable.GameTable[i].atacker) {
+                            true -> GameTable.GameTable[i].atack()
+                            false -> GameTable.GameTable[i].defence()
+                        }
+                    }
                 }
             }
         }

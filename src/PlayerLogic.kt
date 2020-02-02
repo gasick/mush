@@ -9,12 +9,38 @@ object PlayerLogic {
         var dealer: Boolean = false
         var cards: MutableList<Card> = mutableListOf()
         var atacker: Boolean = false
+        var AceOfSpades: Boolean = false
+        var PairOfJacks: Boolean = false
 
         //Атака игрока
-        fun atack() {}
+        fun atack(p: player): Card {
+
+        }
 
         //Защита игрока
-        fun defence() {}
+        fun defence(p: player): Card {
+
+        }
+
+        //Проверяем ништяки
+        fun checkBenefits() {
+            //Количество вальтов
+            var i = 0
+            var red = 0
+            var black = 0
+            for (c in cards){
+                //Если в картах на руках есть туз пик
+                // помечаем это дело
+                if (c.suit == Suits.Spades) AceOfSpades = true
+                // Если находим вольта, прибавляем 1 к переменной
+                if (c.symbol == Symbols.Jack) i+=1
+                if (c.suit == Suits.Spades || c.suit == Suits.Clubs) black += 1
+                if (c.suit == Suits.Diamonds || c.suit == Suits.Hearts) red +=1
+            }
+            //Проверяем, если количество вальтов больше 1
+            //Тогда помечаем что у игрока есть пара вальтов
+            if (i>1 && (red >1 || black > 1)) PairOfJacks = true
+        }
     }
 
 
