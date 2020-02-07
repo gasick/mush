@@ -1,40 +1,40 @@
-import kotlin.random.Random
+import kotlin.random.Random 
 import kotlin.random.nextInt
 
 object CardDeck {
     //собираем колоду карт
     var cardDeck: MutableList<Card> = mutableListOf(
-        Card(Suits.Hearts, Symbols.Ace),
-        Card(Suits.Hearts, Symbols.King),
-        Card(Suits.Hearts, Symbols.Queen),
-        Card(Suits.Hearts, Symbols.Jack),
+        Card(Suits.Hearts, Symbols.A),
+        Card(Suits.Hearts, Symbols.K),
+        Card(Suits.Hearts, Symbols.Q),
+        Card(Suits.Hearts, Symbols.J),
         Card(Suits.Hearts, Symbols.Ten),
         Card(Suits.Hearts, Symbols.Nine),
         Card(Suits.Hearts, Symbols.Eight),
         Card(Suits.Hearts, Symbols.Seven),
         Card(Suits.Hearts, Symbols.Six),
-        Card(Suits.Clubs, Symbols.Ace),
-        Card(Suits.Clubs, Symbols.King),
-        Card(Suits.Clubs, Symbols.Queen),
-        Card(Suits.Clubs, Symbols.Jack),
+        Card(Suits.Clubs, Symbols.A),
+        Card(Suits.Clubs, Symbols.K),
+        Card(Suits.Clubs, Symbols.Q),
+        Card(Suits.Clubs, Symbols.J),
         Card(Suits.Clubs, Symbols.Ten),
         Card(Suits.Clubs, Symbols.Nine),
         Card(Suits.Clubs, Symbols.Eight),
         Card(Suits.Clubs, Symbols.Seven),
         Card(Suits.Clubs, Symbols.Six),
-        Card(Suits.Spades, Symbols.Ace),
-        Card(Suits.Spades, Symbols.King),
-        Card(Suits.Spades, Symbols.Queen),
-        Card(Suits.Spades, Symbols.Jack),
+        Card(Suits.Spades, Symbols.A),
+        Card(Suits.Spades, Symbols.K),
+        Card(Suits.Spades, Symbols.Q),
+        Card(Suits.Spades, Symbols.J),
         Card(Suits.Spades, Symbols.Ten),
         Card(Suits.Spades, Symbols.Nine),
         Card(Suits.Spades, Symbols.Eight),
         Card(Suits.Spades, Symbols.Seven),
         Card(Suits.Spades, Symbols.Six),
-        Card(Suits.Diamonds, Symbols.Ace),
-        Card(Suits.Diamonds, Symbols.King),
-        Card(Suits.Diamonds, Symbols.Queen),
-        Card(Suits.Diamonds, Symbols.Jack),
+        Card(Suits.Diamonds, Symbols.A),
+        Card(Suits.Diamonds, Symbols.K),
+        Card(Suits.Diamonds, Symbols.Q),
+        Card(Suits.Diamonds, Symbols.J),
         Card(Suits.Diamonds, Symbols.Ten),
         Card(Suits.Diamonds, Symbols.Nine),
         Card(Suits.Diamonds, Symbols.Eight),
@@ -60,7 +60,7 @@ object CardDeck {
     }
 
     //Выводим содержание колоды.
-    fun printCardDeckContent() {
+    fun printCardDeckInfo() {
         for (card in CardDeck.cardDeck)
             when (card.inuse) {
                 true -> println("\t${card.symbol} ${card.suit} в игре.")

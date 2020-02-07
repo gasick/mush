@@ -12,15 +12,21 @@ object PlayerLogic {
         var AceOfSpades: Boolean = false
         var PairOfJacks: Boolean = false
 
-        //Атака игрока
-        fun atack(p: player): Card {
+        //TODO Атака игрока
+        //fun atack(p: player) {
+          //  for (x in player.cards.size - 1 downTo 0) {
+            //    if (player.cards[x].Symbols != GameTable.trump
+              //      && player.cards[x].symbol != Symbols.A
+        //        ) player.cards.removeAt(x)
+         //   }
+         //   player.cards.sort()
+            
+       // }
 
-        }
+        //TODO Защита игрока
+        //fun defence(p: player): Card {
 
-        //Защита игрока
-        fun defence(p: player): Card {
-
-        }
+        //}
 
         //Проверяем ништяки
         fun checkBenefits() {
@@ -33,7 +39,7 @@ object PlayerLogic {
                 // помечаем это дело
                 if (c.suit == Suits.Spades) AceOfSpades = true
                 // Если находим вольта, прибавляем 1 к переменной
-                if (c.symbol == Symbols.Jack) i+=1
+                if (c.symbol == Symbols.J) i+=1
                 if (c.suit == Suits.Spades || c.suit == Suits.Clubs) black += 1
                 if (c.suit == Suits.Diamonds || c.suit == Suits.Hearts) red +=1
             }
@@ -54,7 +60,7 @@ object PlayerLogic {
             if (player.dealer != true) {
                 for (x in player.cards.size - 1 downTo 0) {
                     if (player.cards[x].suit != GameTable.trump
-                        && player.cards[x].symbol != Symbols.Ace
+                        && player.cards[x].symbol != Symbols.A
                     ) player.cards.removeAt(x)
                 }
                 // Условия скидывания карт для ведущего.
@@ -63,7 +69,7 @@ object PlayerLogic {
                 if (CardDeck.cardDeck.size > 4) {
                     for (x in player.cards.size - 1 downTo 0) {
                         if (player.cards[x].suit != GameTable.trump
-                            && player.cards[x].symbol != Symbols.Ace
+                            && player.cards[x].symbol != Symbols.A
                         ) player.cards.removeAt(x)
                     }
                 } else {
@@ -71,7 +77,7 @@ object PlayerLogic {
                     for (i in 0..CardDeck.cardDeck.size) {
                         for (x in player.cards.size - 1 downTo 0) {
                             if (player.cards[x].suit != GameTable.trump
-                                && player.cards[x].symbol != Symbols.Ace
+                                && player.cards[x].symbol != Symbols.A
                             ) player.cards.removeAt(x)
                         }
                     }

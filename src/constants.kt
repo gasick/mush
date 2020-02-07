@@ -1,10 +1,10 @@
 val startPoint = 25
 enum class Suits { Hearts, Clubs, Spades, Diamonds}
 enum class Symbols(val value: Int) {
-    Ace(0),
-    King(1),
-    Queen(2),
-    Jack(3),
+    A(0),
+    K(1),
+    Q(2),
+    J(3),
     Ten(4),
     Nine(5),
     Eight(6),

@@ -1,4 +1,5 @@
 import CardDeck
+import java.util.*
 
 class GamePlay {
 
@@ -50,8 +51,8 @@ class GamePlay {
         for (i in 0..GameTable.GameTable.size)
             //если игрок первый, то он начинает атаковать.
             when (GameTable.GameTable[i].atacker) {
-                true -> GameTable.GameTable[i].atack()
-                false -> GameTable.GameTable[i].defence()
+               //true -> GameTable.GameTable[i].atack()
+               //false -> GameTable.GameTable[i].defence()
             }
 
         fun runcircle(n: Int) {
@@ -60,8 +61,8 @@ class GamePlay {
                     for (i in 0..GameTable.GameTable.size)
                     //если игрок первый, то он начинает атаковать.
                         when (GameTable.GameTable[i].atacker) {
-                            true -> GameTable.GameTable[i].atack()
-                            false -> GameTable.GameTable[i].defence()
+                            //true -> GameTable.GameTable[i].atack()
+                            //false -> GameTable.GameTable[i].defence()
                         }
                         //TODO тут где-то игроки должны выкладывать карты по очереди. и кто бьет всю кучу должен стать
                         // новым атакующим.
@@ -70,8 +71,8 @@ class GamePlay {
                     for (i in n-1 .. GameTable.GameTable.size-1) {
                         // TODO тут мы будем выкладывать по очереди карты
                         when (GameTable.GameTable[i].atacker) {
-                            true -> GameTable.GameTable[i].atack()
-                            false -> GameTable.GameTable[i].defence()
+                            //true -> GameTable.GameTable[i].atack()
+                            //false -> GameTable.GameTable[i].defence()
                         }
                     }
                     for (i in 0 .. n-2) {
@@ -79,8 +80,8 @@ class GamePlay {
                         // TODO тут мы  обозначаем победителя хода
                         // сбрасываем карты и начинаем новый ход
                         when (GameTable.GameTable[i].atacker) {
-                            true -> GameTable.GameTable[i].atack()
-                            false -> GameTable.GameTable[i].defence()
+                            //true -> GameTable.GameTable[i].atack()
+                            //false -> GameTable.GameTable[i].defence()
                         }
                     }
                 }
@@ -122,9 +123,15 @@ class GamePlay {
                 false -> println("${player.name} имеет на руках:")
             }
 
+            print("\t")
+            for (card in player.cards) print("${card.symbol} - ${card.suit}, ")
+            println()
 
-            for (card in player.cards)
-                println("\t${card.symbol} ${card.suit} в игре.")
+            // TODO запилить сортировку карт у игроков
+            player.cards.sort()
+            print("\t")
+            for (card in player.cards) print("${card.symbol} - ${card.suit}, ")
+            println()
         }
         //Тут печатаем основную информацию о том, какие карты у игроков и какой козырь.
         println()
