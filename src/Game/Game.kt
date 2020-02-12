@@ -34,6 +34,10 @@ object Game {
         }
     }
 
+    fun refreshPlayerCards(){
+        for (p in GameTable){ p.cards.clear()}
+    }
+
 
     //Меняем ведущего игрока на следующего в очереди по кругу
     fun changeDealer() {
@@ -57,9 +61,10 @@ object Game {
             //Если игрок последний сдаем ему 6 карт, последняя карта задает козырь
             if (player.dealer == true) {
                 for (x in 1..6) {
-                    player.cards.add(CardDeck.takeCard())
+                    var card = CardDeck.takeCard()
+                    player.cards.add(card)
                     //Задали козыря
-                    if (x == 6) trump = player.cards[5].suit
+                    if (x == 6) trump = card.suit
                 }
                 //если игрок не последний раздаем ему 5 карт
             } else {

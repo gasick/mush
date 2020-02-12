@@ -5,10 +5,11 @@ import Players.Players
 fun main() {
     //Создаем таблицу игроков узнаем имена и задаем количество очков
     Game.GameTable()
-    while(true) {
+   for (i in 1..5){
         println("Начался кон")
         //тасуем карты
         CardDeck.refreshCardDeck()
+        Game.refreshPlayerCards()
         //Раздаем карты
         Game.dealingCards()
         //Печатаем инфу о картах
