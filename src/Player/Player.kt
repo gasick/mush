@@ -5,6 +5,7 @@ import CardDeck.CardDeck
 import Game.Game
 import CardDeck.CardDeck.Symbols
 import CardDeck.CardDeck.Suits
+import Game.Game.table
 
 object Player {
     var startPoints = 25
@@ -23,16 +24,20 @@ object Player {
 
 
         //TODO atack
-        fun turn() {
+        fun turn(): Card {
             //Проверяем если человек первый кто выкладывает карты то карта выбирается по принципу
             //максимально полезная
             if (this.atack){
+                lateinit var card: Card
                 for (c in this.cards){
-
+                    if (c.suit == Suits.Spades && c.symbol == Symbols.A) table = Pair<player, c>
                 }
+                return card
             }
             //Если игрок защищается то карта выбирается либо бьющая либо минимально полезная.
-            else {}
+            else {
+                return
+            }
         }
 
         //TODO check Cards
