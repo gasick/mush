@@ -1,15 +1,15 @@
 import CardDeck.CardDeck
 import Game.Game
-import Players.Players
 
 fun main() {
     //Создаем таблицу игроков узнаем имена и задаем количество очков
+    //Вместо GameTable() должен быть greetings()
     Game.GameTable()
    for (i in 1..5){
         println("Начался кон")
         //тасуем карты
         CardDeck.refreshCardDeck()
-        Game.refreshPlayerCards()
+        Game.cleanPlayerCards()
         //Раздаем карты
         Game.dealingCards()
         //Печатаем инфу о картах

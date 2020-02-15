@@ -1,17 +1,19 @@
 package Game
 
-import Players.Players.player
-import Players.Players
+import Players.Player.Player
 import CardDeck.CardDeck.Suits
 import CardDeck.CardDeck
+import CardDeck.CardDeck.Card
 
 
 object Game {
     //Создаем таблицу в виде списка
-    var GameTable: MutableList<player> = mutableListOf()
+    var Players: MutableList<Player> = mutableListOf()
     //тестово указываем козырь для игры
     var trump: Suits = Suits.Clubs
+    lateinit var table: Pair<Player, Card>
 
+    //Представляем игроков и даем им имена, в данный момент имя у всех Player
     fun greetings() {
       GameTable()
     }
@@ -24,32 +26,33 @@ object Game {
 //        var playerName: String = readLine()!!.toString()
             var playerName: String = "Player$i"
             if (i == 3) {
-                GameTable.add(player(playerName))
-                GameTable[i].dealer = true
+                Players.add(Player(playerName))
+                Players[i].dealer = true
             } else {
-                GameTable.add(player(playerName))
+                Players.add(Player(playerName))
             }
             //Присвоили первому игроку статус атакующего.
-            if (i == 0) GameTable[i].atack = true
+            if (i == 0) Players[i].atack = true
         }
     }
 
-    fun refreshPlayerCards(){
-        for (p in GameTable){ p.cards.clear()}
+    //Чистим карты игроков перед новой раздачей карт
+    fun cleanPlayerCards(){
+        for (p in Players){ p.cards.clear()}
     }
 
 
     //Меняем ведущего игрока на следующего в очереди по кругу
     fun changeDealer() {
-        for (i in 0..GameTable.size-1)
+        for (i in 0..Players.size-1)
         //Меняем ведущего.
-            if (GameTable[i].dealer)
+            if (Players[i].dealer)
                 when (i) {
                     //Если он последний тогда указываем что теперь
                     //ведущий первый игрок
-                    GameTable.size-1 -> GameTable[0].dealer = true
+                    Players.size-1 -> Players[0].dealer = true
                     //Если он не последний, то следующий за ним игрок ведущий
-                    else -> GameTable[i+1].dealer = true
+                    else -> Players[i+1].dealer = true
 
                 }
     }
@@ -57,7 +60,7 @@ object Game {
 
     //раздаем карты игрокам помечаем козыря
     fun dealingCards() {
-        for (player in GameTable) {
+        for (player in Players) {
             //Если игрок последний сдаем ему 6 карт, последняя карта задает козырь
             if (player.dealer == true) {
                 for (x in 1..6) {
@@ -73,23 +76,25 @@ object Game {
                 }
             }
         }
+        //TODO После раздачи проверяем наичие ништяков
     }
 
     //каждый из игроков проверяет полученные карты и в случае если не удовлетворен раздачей просит пересдать
     fun redealingAfterFolding() {
 
         //Игрокам раздаются недостающие карты.
-        for (player in GameTable){
+        for (player in Players){
             for (x in 1..5-player.cards.size) {
                 player.cards.add(CardDeck.takeCard())
             }
         }
+        //TODO после перераздачи проверяем наличие ништяков в игре
     }
     //Игрок сбрасывает неугодные карты
     fun foldingBadCards() {
         //Разделить сброс карты на ведущего и остальных так как ведущему может не хватить карт.
         //так же логика взятия ведущего отличается от логики
-        for (player in GameTable) {
+        for (player in Players) {
             //условия скидывания карт для не ведущего игрога
             if (player.dealer != true) {
                 for (x in player.cards.size - 1 downTo 0) {
@@ -128,7 +133,7 @@ object Game {
 
     fun printPlayerInfo() {
         // печетаем информацию о игроках
-        for (player in GameTable) {
+        for (player in Players) {
             println()
             //Указываем что игрок является атакующим
             if (player.atack) println("${player.name} - Первый в кону")
@@ -152,21 +157,37 @@ object Game {
         println()
         println("Козырь: ${trump}")
         println("\t Имя \t Количество очков")
-        for (player in GameTable)
+        for (player in Players)
             println("\t ${player.name}: \t ${player.points.toString()} ")
     }
 
     fun round() {
         //Находим атакующего игрока и вызывваем метод по кругу
-        for (i: Int in 0..GameTable.size-1)
-            if (GameTable[i].atack)
+        for (i: Int in 0..Players.size-1)
+            if (Players[i].atack)
                 getCircle(i)
 
     }
     //Нужно придумать как будет обходиться круг когда атакующий первый или последний
     fun getCircle(i: Int){
-        for (j in i..GameTable.size-1){GameTable[i].defence()}
-        for (j in 0..i){GameTable[i].defence()}
+        when (i){
+            0-> {
+               for (p in Players){
+                   p.turn()
+               }
+            }
+            Players.size-1 -> {
+                Players.last().turn()
+                for (i in 0..Players.size-2)
+                    Players[i].turn()
+
+            }
+            else -> {
+                for (j in i..Players.size-1){Players[i].turn()}
+                for (j in 0..i){Players[i].turn()}
+            }
+        }
+
     }
 
     //Проверяем сколько очков у нас получается
