@@ -24,14 +24,21 @@ object Player {
 
 
         //TODO atack
-        fun turn(): Card {
+        fun turn(p: Player): Card {
             //Проверяем если человек первый кто выкладывает карты то карта выбирается по принципу
             //максимально полезная
-            if (this.atack){
+            //TODO нужно придумать как именно брать карту у игрока. мы либо её возвращаем в функции turn
+            // или же мы сразу помещяем карту на стол в table без всяких промежуточных этапов
+            if (p.atack){
                 lateinit var card: Card
-                for (c in this.cards){
-                    if (c.suit == Suits.Spades && c.symbol == Symbols.A) table = Pair<player, c>
+                for (i in 1..5){
+                    if (p.cards[i].suit == Suits.Spades && p.cards[i].symbol == Symbols.A){
+                        table= Pair(p, p.cards[i])
+                    }
+                    else if (p.cards[i].suit == Game.trump && p.cards[i].symbol == Symbols.A) table=Pair(p, p.cards[i])
+                    Symbols.A.ordinal
                 }
+                for (c in p.cards)
                 return card
             }
             //Если игрок защищается то карта выбирается либо бьющая либо минимально полезная.
