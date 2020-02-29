@@ -24,25 +24,25 @@ object Player {
 
 
         //TODO atack
-        fun turn(p: Player): Card {
+        fun turn(): Card {
             //Проверяем если человек первый кто выкладывает карты то карта выбирается по принципу
             //максимально полезная
             //TODO нужно придумать как именно брать карту у игрока. мы либо её возвращаем в функции turn
             // или же мы сразу помещяем карту на стол в table без всяких промежуточных этапов
-            if (p.atack){
+            if (this.atack){
                 lateinit var card: Card
                 for (i in 1..5){
-                    if (p.cards[i].suit == Suits.Spades && p.cards[i].symbol == Symbols.A){
-                        table= Pair(p, p.cards[i])
+                    if (this.cards[i].suit == Suits.Spades && this.cards[i].symbol == Symbols.A){
+                        table= Pair(this, this.cards[i])
                     }
-                    else if (p.cards[i].suit == Game.trump && p.cards[i].symbol == Symbols.A) table=Pair(p, p.cards[i])
+                    else if (this.cards[i].suit == Game.trump && this.cards[i].symbol == Symbols.A) table=Pair(this, this.cards[i])
                     Symbols.A.ordinal
                 }
-                for (c in p.cards)
-                return card
+                this.cards.forEach { return card }
             }
             //Если игрок защищается то карта выбирается либо бьющая либо минимально полезная.
             else {
+                //
                 return
             }
         }
@@ -52,7 +52,7 @@ object Player {
         fun checkCards() {
             var JackPairB = 0
             var JackPairR = 0
-            for (c in cards){
+            cards.forEach{c ->
                 //Если есть пары вальтов или туз пик то отмечаем это
                 if (c.symbol == Symbols.A && c.suit == Suits.Spades) AceOfSpades = true
                 if (c.symbol == Symbols.J && (c.suit == Suits.Hearts || c.suit == Suits.Diamonds)) JackPairR++

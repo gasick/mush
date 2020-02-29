@@ -40,7 +40,7 @@ object Game {
 
     //Чистим карты игроков перед новой раздачей карт
     fun cleanPlayerCards(){
-        for (p in Players){ p.cards.clear()}
+        Players.forEach {p -> p.cards.clear()}
     }
 
 
@@ -62,7 +62,7 @@ object Game {
 
     //раздаем карты игрокам помечаем козыря
     fun dealingCards() {
-        for (player in Players) {
+        Players.forEach {player ->
             //Если игрок последний сдаем ему 6 карт, последняя карта задает козырь
             if (player.dealer == true) {
                 for (x in 1..6) {
@@ -85,7 +85,7 @@ object Game {
     fun redealingAfterFolding() {
 
         //Игрокам раздаются недостающие карты.
-        for (player in Players){
+        Players.forEach {player ->
             for (x in 1..5-player.cards.size) {
                 player.cards.add(CardDeck.takeCard())
             }
@@ -96,7 +96,7 @@ object Game {
     fun foldingBadCards() {
         //Разделить сброс карты на ведущего и остальных так как ведущему может не хватить карт.
         //так же логика взятия ведущего отличается от логики
-        for (player in Players) {
+        Players.forEach {player ->
             //условия скидывания карт для не ведущего игрога
             if (player.dealer != true) {
                 for (x in player.cards.size - 1 downTo 0) {
@@ -135,7 +135,7 @@ object Game {
 
     fun printPlayerInfo() {
         // печетаем информацию о игроках
-        for (player in Players) {
+        Players.forEach {player ->
             println()
             //Указываем что игрок является атакующим
             if (player.atack) println("${player.name} - Первый в кону")
@@ -174,7 +174,7 @@ object Game {
     fun getCircle(i: Int){
         when (i){
             0-> {
-               for (p in Players){
+                Players.forEach {p ->
                    p.turn()
                }
             }

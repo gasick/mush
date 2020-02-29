@@ -77,11 +77,12 @@ object CardDeck {
 
     //Выводим содержание колоды.
     fun printCardDeckInfo() {
-        for (card in CardDeck)
+        CardDeck.forEach { card ->
             when (card.inuse) {
                 true -> println("\t${card.symbol} ${card.suit} в игре.")
                 false -> println("\t${card.symbol} ${card.suit} не в игре.")
             }
+        }
     }
 
 }
